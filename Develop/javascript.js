@@ -18,9 +18,12 @@ var colorTimeBlock = function(){
         var parsedHour = moment().format(hour, "h hh");
         console.log(parsedHour)
         if (parsedHour < now){
+            $(this).removeClass('present')
+            $(this).removeClass('future')
             $(this).addClass("past")
         } else if (parsedHour === now){
             $(this).removeClass('past')
+            $(this).removeClass('future')
             $(this).addClass("present")
         } else {
             $(this).removeClass('past')
@@ -41,5 +44,7 @@ $(document).ready(function(){
     var today = moment().format("dddd, MMM Do")
     $("#currentDay").text(today)
 })
+
+
 
 colorTimeBlock();

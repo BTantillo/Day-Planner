@@ -1,6 +1,6 @@
 $(".saveButton").on("click", function(){
     var textsContent = $(this).siblings("textarea").val()
-    console.log(textsContent)
+    // console.log(textsContent)
     //Need to save value in localStorage
     
     var clockTime = $(this).parent().attr("id")
@@ -18,15 +18,17 @@ var colorTimeBlock = function(){
         var parsedHour = moment().format(hour, "h hh");
         console.log(parsedHour)
         if (parsedHour < now){
-
+            $(this).addClass("past")
         } else if (parsedHour === now){
-
+            $(this).removeClass('past')
+            $(this).addClass("present")
         } else {
-
+            $(this).removeClass('past')
+            $(this).removeClass('present')
+            $(this).addClass("future")
         }
-        // google how to add/remove classes in js
         console.log(hour)
-        console.log(now)
+       
     })
 }
 
@@ -36,6 +38,8 @@ $(document).ready(function(){
         var storedScheduleTexts = localStorage.getItem(id)
         $(this).val(storedScheduleTexts)
     })
+    var today = moment().format("dddd, MMM Do")
+    $("#currentDay").text(today)
 })
 
 colorTimeBlock();
